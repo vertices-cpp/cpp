@@ -1,4 +1,0 @@
-b2t限制320x240 bmp
-导出tiles
-导出new tle
-mmm只能xp下运行显示正常

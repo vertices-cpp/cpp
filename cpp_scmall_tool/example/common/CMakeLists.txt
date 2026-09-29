@@ -25,6 +25,7 @@ target_include_directories(common PUBLIC
 # 如果 common 里用到了 zlib / tinyxml2 / freetype，才 link
 target_link_libraries(common PUBLIC
     zlib
+    minizip
     tinyxml2
     # freetype   # 如果 common 没用到 freetype，不用 link
     # unzip      # 如果 common 没用到 unzip，不用 link

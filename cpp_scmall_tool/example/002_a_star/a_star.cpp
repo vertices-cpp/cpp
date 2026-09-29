@@ -1,4 +1,4 @@
-/************************************************************/
+ï»¿/************************************************************/
 /************************************************************/
 /**************** A star algorithm   ************************/
 /************        by c_cpp123    **************************/
@@ -17,11 +17,11 @@
 using namespace std;
 
 
-/*	0:¿Õ°×µã NULL tile
-*	1:ÆğÊ¼µã Start
-*	2:Ä¿±êµã Finish
-*	3:Ç½	Wall
-*	4:Â·Ïß	Path
+/*	0:ç©ºç™½ç‚¹ NULL tile
+*	1:èµ·å§‹ç‚¹ Start
+*	2:ç›®æ ‡ç‚¹ Finish
+*	3:å¢™	Wall
+*	4:è·¯çº¿	Path
 */
 
 struct Location
@@ -49,9 +49,9 @@ namespace std {
 	};
 };
 
-//const char *dir[] = { "ÉÏ","ÏÂ","×ó","ÓÒ" };
-//Location LocationDir[4]  = { {0, -1}, {0, 1}, {-1, 0}, {1, 0} };	// ÓÃÀ´Éú³É½ÚµãÖÜÎ§ÉÏÏÂ×óÓÒµÄ×ø±êÒÆ¶¯Öµ
-const char *dir[] = { "ÉÏ","ÏÂ","×ó","ÓÒ","×óĞ±ÉÏ","ÓÒĞ±ÏÂ","×óĞ±ÏÂ","ÓÒĞ±ÉÏ" };
+//const char *dir[] = { "ä¸Š","ä¸‹","å·¦","å³" };
+//Location LocationDir[4]  = { {0, -1}, {0, 1}, {-1, 0}, {1, 0} };	// ç”¨æ¥ç”ŸæˆèŠ‚ç‚¹å‘¨å›´ä¸Šä¸‹å·¦å³çš„åæ ‡ç§»åŠ¨å€¼
+const char *dir[] = { "ä¸Š","ä¸‹","å·¦","å³","å·¦æ–œä¸Š","å³æ–œä¸‹","å·¦æ–œä¸‹","å³æ–œä¸Š" };
 Location LocationDir[8] = {
 	{0, -1,1},
 {0, 1,1},
@@ -60,7 +60,7 @@ Location LocationDir[8] = {
 {-1,-1,1.4},
 {1,1,1.4},
 {-1,1,1.4},
-{1,-1,1.4} };// ÓÃÀ´Éú³É½ÚµãÖÜÎ§ÉÏÏÂ×óÓÒµÄ×ø±êÒÆ¶¯Öµ
+{1,-1,1.4} };// ç”¨æ¥ç”ŸæˆèŠ‚ç‚¹å‘¨å›´ä¸Šä¸‹å·¦å³çš„åæ ‡ç§»åŠ¨å€¼
 
 class Grid
 {
@@ -71,24 +71,24 @@ public:
 	Grid(int w, int h, std::unordered_set<Location> walls_) :width(w), height(h), walls(walls_) {};
 	int get_width() const { return width; }
 	int get_height() const { return height; }
-	/* ÊÇ·ñµ½´ï±ß½ç */
+	/* æ˜¯å¦åˆ°è¾¾è¾¹ç•Œ */
 	bool in_bounds(const Location &loc)const {
 		return loc.x >= 0 && loc.x < width &&loc.y >= 0 && loc.y < height;
 	}
-	/* ÊÇ·ñÓöµ½Ç½ */
+	/* æ˜¯å¦é‡åˆ°å¢™ */
 	bool passable(const Location &loc)const {
 		return walls.find(loc) == walls.end();
 	}
 
 };
 
-/* °üº¬×ø±ê
+/* åŒ…å«åæ ‡
 	*	F=G+H
-	*	G±íÊ¾¸Ãµãµ½ÆğÊ¼µãÎ»ËùĞèÒªµÄ´ú¼Û 
-	*	H±íÊ¾¸Ãµãµ½ÖÕµãµÄÂü¹ş¶Ù¾àÀë¡£
-	*	F¾ÍÊÇGºÍHµÄ×ÜºÍ£¬¶ø×îÓÅÂ·¾¶Ò²¾ÍÊÇÑ¡Ôñ×îĞ¡µÄFÖµ£¬½øĞĞÏÂÒ»²½ÒÆ¶¯£¨ºó±ß»á×öÏêÏ¸½éÉÜ£©
-	*	µØÍ¼¿é
-	*	·½Ïò
+	*	Gè¡¨ç¤ºè¯¥ç‚¹åˆ°èµ·å§‹ç‚¹ä½æ‰€éœ€è¦çš„ä»£ä»· 
+	*	Hè¡¨ç¤ºè¯¥ç‚¹åˆ°ç»ˆç‚¹çš„æ›¼å“ˆé¡¿è·ç¦»ã€‚
+	*	Få°±æ˜¯Gå’ŒHçš„æ€»å’Œï¼Œè€Œæœ€ä¼˜è·¯å¾„ä¹Ÿå°±æ˜¯é€‰æ‹©æœ€å°çš„Få€¼ï¼Œè¿›è¡Œä¸‹ä¸€æ­¥ç§»åŠ¨ï¼ˆåè¾¹ä¼šåšè¯¦ç»†ä»‹ç»ï¼‰
+	*	åœ°å›¾å—
+	*	æ–¹å‘
 	*/
 namespace Tool {
 	inline double manhattan(const Location& a, const Location& b) { return abs(a.x - b.x) + abs(a.y - b.y); };
@@ -125,7 +125,7 @@ vector<pair<Location, double>>::iterator findLastNode(vector<pair<Location, doub
 
 typedef double(calculateCost_fn)(const Location&, const Location&);
 
-// A* Ëã·¨
+// A* ç®—æ³•
 unordered_map<Location, Location>  astar(const Grid &grid,
 	const Location &start,
 	const Location &goal,
@@ -133,7 +133,7 @@ unordered_map<Location, Location>  astar(const Grid &grid,
 {
 	unordered_map<Location, Location> came_from{};
 	came_from[start] = start;
-	/* µÚ¶şÏîÊÇhÖµ */
+	/* ç¬¬äºŒé¡¹æ˜¯hå€¼ */
 	vector<pair<Location, double>> openlist;
 	vector<Location> closelist;
 	openlist.push_back({ start,0 });
@@ -152,7 +152,7 @@ unordered_map<Location, Location>  astar(const Grid &grid,
 		{
 			break;
 		}
-		/* ÏÈµÃµ½ÓĞĞ§ÁÚ¾Ó */
+		/* å…ˆå¾—åˆ°æœ‰æ•ˆé‚»å±… */
 		vector<Location> successors;
 
 		for (auto neighbours : LocationDir)

@@ -15,8 +15,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 # ============================================================
 if(EXISTS "${CMAKE_SOURCE_DIR}/Resources")
     add_custom_target(SyncRes ALL
-        COMMAND ${CMAKE_COMMAND} -E rm -rf
-            "${CMAKE_BINARY_DIR}/bin/$<CONFIG>/Resources"
+      #[[  COMMAND ${CMAKE_COMMAND} -E rm -rf
+            "${CMAKE_BINARY_DIR}/bin/$<CONFIG>/Resources"]]
         COMMAND ${CMAKE_COMMAND} -E make_directory
             "${CMAKE_BINARY_DIR}/bin/$<CONFIG>/Resources"
         COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -60,3 +60,5 @@ add_subdirectory(example/017_rebuild_project)
 add_subdirectory(example/018_cmake_traverses_generate_paths)
 add_subdirectory(example/019_cpp_traverses_generate_paths)
 add_subdirectory(example/020_file_traverses_generate_paths)
+add_subdirectory(example/021_nes_11x11_font)
+add_subdirectory(example/022_zip_compression)

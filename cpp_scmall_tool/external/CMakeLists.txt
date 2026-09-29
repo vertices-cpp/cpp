@@ -3,9 +3,9 @@ project(external)
 
 add_subdirectory(zlib)
 add_subdirectory(tinyxml2)
-add_subdirectory(unzip) 
+add_subdirectory(minizip) 
 
 add_library(external INTERFACE)
-target_link_libraries(external INTERFACE zlib tinyxml2 unzip)  
+target_link_libraries(external INTERFACE zlib tinyxml2 minizip)  
 
-set_target_properties(zlib tinyxml2 unzip PROPERTIES FOLDER "External")
+set_target_properties(zlib tinyxml2 minizip PROPERTIES FOLDER "External")

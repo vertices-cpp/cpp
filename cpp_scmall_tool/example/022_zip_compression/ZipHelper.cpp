@@ -68,6 +68,7 @@ OG_BEGIN
     // 递归收集文件
     static void collectFiles(
         const std::string& baseDir,
+		const std::string& zipPrefix,   // ← 新增
         std::vector<std::pair<std::string, std::string>>& out)
     {
 #if defined(_WIN32)
@@ -82,15 +83,19 @@ OG_BEGIN
             if (name == "." || name == "..") continue;
 
             std::string full = joinPath(baseDir, name);
+			std::string rel = joinPath(zipPrefix, name);   // ← 先算本层前缀
+
             if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
             {
-                collectFiles(full, out);
+				
+                collectFiles(full, rel,out);
             }
             else
             {
-                std::string rel = full.substr(baseDir.size());
-                if (!rel.empty() && (rel[0] == '/' || rel[0] == '\\'))
-                    rel = rel.substr(1);
+               // std::string rel = full.substr(baseDir.size());
+//                 if (!rel.empty() && (rel[0] == '/' || rel[0] == '\\'))
+//                     rel = rel.substr(1); 
+
                 out.push_back({ full, rel });
             }
         }
@@ -107,18 +112,21 @@ OG_BEGIN
             if (name == "." || name == "..") continue;
 
             std::string full = joinPath(baseDir, name);
+			std::string rel = joinPath(zipPrefix, name);   // ← 统一在这里算
+
             struct stat st;
             if (stat(full.c_str(), &st) != 0) continue;
 
             if (S_ISDIR(st.st_mode))
             {
-                collectFiles(full, out);
+               // collectFiles(full, out);
+				collectFiles(full, rel, out);   // ← 传 rel
             }
             else if (S_ISREG(st.st_mode))
             {
-                std::string rel = full.substr(baseDir.size());
-                if (!rel.empty() && (rel[0] == '/' || rel[0] == '\\'))
-                    rel = rel.substr(1);
+//                 std::string rel = full.substr(baseDir.size());
+//                 if (!rel.empty() && (rel[0] == '/' || rel[0] == '\\'))
+//                     rel = rel.substr(1);
                 out.push_back({ full, rel });
             }
         }
@@ -195,17 +203,19 @@ OG_BEGIN
         // 1. 收集所有文件
         std::vector<std::pair<std::string, std::string>> files;
 
+		
         for (const auto& p : srcPaths)
         {
+			size_t pos = p.find_last_of("/\\");
+			std::string baseName = (pos == std::string::npos) ? p : p.substr(pos + 1);
+
             if (isDir(p))
-            {
-                collectFiles(p, files);
+            { 
+				collectFiles(p, baseName, files);   // ✅ 传初始前缀
             }
             else if (isFile(p))
-            {
-                size_t pos = p.find_last_of("/\\");
-                std::string name = (pos == std::string::npos) ? p : p.substr(pos + 1);
-                files.push_back({ p, name });
+            { 
+                files.push_back({ p, baseName });
             }
         }
 

@@ -130,7 +130,7 @@ public:
 
 		if (c != 'B'&& c != '#')
 		{
-			if ((xStart != -1 && yStart != -1) && (xStart != y || yStart != x))
+			if ((xStart != -1 && yStart != -1) && (xStart != x || yStart != y))
 				nodeMap[yStart][xStart].tile = '.';
 
 			nodeMap[y][x].tile = (c == '.' ? 'A' : '.');

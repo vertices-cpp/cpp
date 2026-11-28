@@ -1,0 +1,73 @@
+0.3.4 - 14April05
+!Fix! Some memory leaks
+!New! Export ready to use data (pal, first tile and flip)
+!New! Export Tiles and pal
+!New! Export Horizontal or Vertical scripting
+!New! Pal & First tile option on export too
+
+0.3.3 - (unreleased - private use)
+!Fix! Bug on properties (fieldA prop & fieldB prop invert)
+!New! Handle flip in the map, not properties (easier to use on Genny side)
+!New! Properties export optionnal
+
+0.3.2 - 18August04
+!Fix! Save As now works on New Map
+!New! Configure the starting tile (used on export)
+
+0.3.1 - 01August04
+!Fix! better GUI
+!Fix! crash on Add group
+!Fix! gettile doesn't work on group edit
+!Fix! on new/load, no map until tab map
+!Fix! export doesn't work well on existing files
+!Fix! Crash on load if object file doens't exist
+!Fix! Context menu position now correct
+!New! Configuration of some stuff
+!New! Show name
+!New! choose output export format via Configuration
+!New! Group : file/add/edit
+!New! use +/- to select next/previous tile/sprite
+!New! handle flip
+!New! new MMM.dat to handle the change
+
+0.2.1 - 30May04 First Public release
+!Fix! zoom with sprites
+!Fix! keyboard doesn't lose focus anymore
+!Fix! context Zoom&Grid working
+!Fix! optimize edit/info/delete mode
+!Fix! Correct application icon
+!Fix! when first loading to edit mode, if no curTile, init to 0
+!Fix! Resize doesn't crashe MMM
+!Fix! Active cursor of scroll
+!Fix! optimized image list creation
+!Fix! pb with tile 0 ?
+!Fix! bad refresh on tiles list when scroll, on empty tiles
+!Fix! can select an empty tile
+!Fix! about dlg box
+!Fix! bad tile scroll def (last line)
+!Fix! change fields raz scroll (very annoying to edit!)
+!Fix! use LocalAlloc for memory alloc
+!Fix! add comments
+!New! Load/Save/SaveAs
+!New! New (with empty sized map and existing mmt/tle file)
+!New! 3 buttons : Info, Edit, Eraser
+!New! right click on map change current tile
+!New! mix TileInfo + MapInfo
+!New! Zoom on map
+!New! Export tiles.bmp
+!New! resize map
+!New! export as test rom
+!New! Add default object
+!New! Save object only if needed, with use of objectData
+!New! Export object
+!New! add Help
+!New! can adjust the current tile with an updown
+!New! ctrl-key to get tile from map
+!New! menu popup
+!New! cursor for get mode (while ctrl)
+!New! Handle sprites
+
+0.x.x - Private beta
+These versions were more tests than real applications
+As you can see in the "New" part of the first beta, it was lacking a lot of thing
+I really start 0.2.1 in January04....5 months to make a releasable version!

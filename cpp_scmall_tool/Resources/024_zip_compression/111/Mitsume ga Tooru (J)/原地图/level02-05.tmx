@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map width='8' height='7' orientation='orthogonal' tilewidth='32' tileheight='32' version='1.0'><tileset firstgid='1' name='Tiles' tilewidth='32' tileheight='32'><image width='512' height='160' source='level02-05.png'/></tileset><layer height='7' name='Layer1' width='8'><data compression='gzip' encoding='base64'>H4sIAAAAAAAEAG3KNw6AQAwF0SVnlpwz3P+MTOECoS2eLM23rZRy4MKDBR8BQkSIkSBFhhwahfyXqFCjQYsOvex/A0ZDnzAb2iJ9FRt2HDg/LnHjkfsC1XP3HOAAAAA=</data></layer></map>
